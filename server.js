@@ -5,6 +5,8 @@
 const express = require("express");
 const path = require("path");
 
+const PORT = process.env.PORT || 8080;
+
 const app = new express();
 
 app.use(express.static("public"));
@@ -27,4 +29,6 @@ app.get("/server_side_ua_sniffing.png", (req, res) => {
   res.status(302).redirect(image);
 });
 
-app.listen(8080);
+app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`);
+});
