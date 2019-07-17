@@ -1,0 +1,105 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>WebCompat System Addon testbed</title>
+    <style>
+      table,
+      td,
+      tr {
+        border-collapse: collapse;
+        border: 1px solid black;
+        padding: 5px;
+      }
+
+      .square {
+        background-color: #ccc;
+        height: 100px;
+        width: 100px;
+      }
+
+      .red {
+        background-color: #f00;
+      }
+
+      .green {
+        background-color: #0f0;
+      }
+    </style>
+    <script>
+      /**
+       * This gets used as a placeholder for any feature detection based on global
+       * attributes.
+       */
+      window.isTestFeatureSupported = false;
+
+      document.addEventListener("DOMContentLoaded", function() {
+        /**
+         * Just a dummy UA check to see if the browser is Chrome, as done
+         * by many sites
+         */
+        var uaSquare = document.getElementById("useragent");
+        if (navigator.userAgent.toLowerCase().indexOf("chrome") > -1) {
+          uaSquare.classList.add("green");
+        } else {
+          uaSquare.classList.add("red");
+        }
+
+        /**
+         * Run the simulated "feature detection" based on a global variable,
+         * juset to have a very simple test case for JS overrides ready
+         */
+        var jsSquare = document.getElementById("js-injection");
+        if (window.isTestFeatureSupported) {
+          jsSquare.classList.add("green");
+        } else {
+          jsSquare.classList.add("red");
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>WebCompat System Addon testbed</h1>
+    <p>
+      In Firefox, all these tests should show a red square if the webcompat
+      addon is disabled, and a green square if the addon is enabled.
+    </p>
+    <p>
+      Please check the
+      <a href="https://wiki.mozilla.org/Compatibility/Go_Faster_Addon"
+        >Mozilla Wiki</a
+      >
+      for more information on what this is about and how it works.
+    </p>
+    <table>
+      <tr>
+        <td>HTTP User Agent override</td>
+        <td>
+          <img src="/server_side_ua_sniffing.png" alt="red or green image" />
+        </td>
+      </tr>
+      <tr>
+        <td>JavaScript User Agent override (navigator.userAgent)</td>
+        <td>
+          <div id="useragent" class="square"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>CSS injection</td>
+        <td>
+          <div id="css-injection" class="square red"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>JS injection</td>
+        <td>
+          <div id="js-injection" class="square"></div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

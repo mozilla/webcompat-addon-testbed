@@ -1,0 +1,13 @@
+{
+  "name": "webcompat-addon-testbed",
+  "description": "Provides a testbed to test and verify the WebCompat system addon.",
+  "author": "Dennis Schubert <dschubert@mozilla.com>",
+  "license": "MPL",
+  "private": true,
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
