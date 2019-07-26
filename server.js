@@ -26,7 +26,7 @@ app.get("/server_side_ua_sniffing.png", (req, res) => {
     image = "green.png";
   }
 
-  res.status(302).redirect(image);
+  res.status(302).redirect("/img/" + image);
 });
 
 app.listen(PORT, () => {
